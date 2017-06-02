@@ -88,7 +88,24 @@ public class TodoDaoTest {
 	
 	@Test
 	public void shouldDeleteCompletedAll(){
+		int completedCount = dao.getCompletedCount();
 		int result = dao.deleteCompletedAll();
-		assertThat(result, is(1));
+		assertThat(result, is(completedCount));
+	}
+	
+	@Test
+	public void shouldSetCompletedAll(){
+		int totalCount = dao.getTodosCount();
+		int completedCount = dao.getCompletedCount();
+		
+		int result = dao.updateSetCompletedAll();
+		assertThat(result, is(totalCount - completedCount));
+	}
+	
+	@Test
+	public void shouldSetUncompletedAll(){
+		int completedCount = dao.getCompletedCount();
+		int result = dao.updateSetUncompletedAll();
+		assertThat(result, is(completedCount));
 	}
 }

@@ -72,5 +72,30 @@ public class TodoDao {
 		return jdbc.update(TodoSqls.UPDATE_COMPLETED_BY_ID, params);
 	}
 	
+	public int updateSetCompletedAll(){
+		Map<String, Object> params = Collections.emptyMap();
+		return jdbc.update(TodoSqls.UPDATE_SET_COMPLETED_ALL, params);
+	}
+	
+	public int updateSetUncompletedAll(){
+		Map<String, Object> params = Collections.emptyMap();
+		return jdbc.update(TodoSqls.UPDATE_SET_UNCOMPLETED_ALL, params);
+	}
+	
+	
+	
+	// Test를 위한 함수들
+	
+	public int getCompletedCount(){
+		Map<String, Object> params = Collections.emptyMap();
+		return jdbc.queryForObject(TodoSqls.GET_COMPLETED_COUNT, params, Integer.class);
+	}
+	
+	public int getTodosCount(){
+		Map<String, Object> params = Collections.emptyMap();
+		return jdbc.queryForObject(TodoSqls.GET_TODOS_COUNT, params, Integer.class);
+	}
+
+	
 }
 	

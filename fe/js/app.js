@@ -9,6 +9,7 @@ $(document).ready(function(){
     $leftTodoCount = $('.todo-count').children('strong');
     $selectedFilter = $('ul.filters a.selected');
     $todoDetailContainer = $('.todo-detail-container');
+    $toggleAllBtn = $('input[type=checkbox].toggle-all');
 
     // 웹 페이지 처음 로드시 todo list를 가져와서 뿌려줌
     $.ajax({
@@ -174,8 +175,20 @@ $(document).ready(function(){
                     $todoList.children('li.completed').remove();
                 }
             }).fail(function(){
-                alert('완료목록 전체 삭제에 실패했습니다. 잠시후 다시 시도해 주세요.');
+                alert('완료목록 전체 삭제에 실패했습니다. 잠시 후 다시 시도해 주세요.');
             });
+        }
+    });
+
+    $toggleAllBtn.click(function(){
+        if($toggleAllBtn.is(':checked')){
+            if(confirm('todolist 목록을 전부 완료 선택하시겠습니까?\n전부 완료 선택하시면 이전 상태로 되돌릴 수 없습니다.')){
+                toggle_all('completedAll');
+            }
+        }else{
+            if(confirm('todolist 목록을 전부 비 완료 상태로 전환하시겠습니까?\n전부 비 완료 선택하시면 이전 상태로 되돌릴 수 없습니다.')){
+                toggle_all('UncompletedAll');
+            }
         }
     });
 

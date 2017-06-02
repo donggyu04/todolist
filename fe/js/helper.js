@@ -42,6 +42,7 @@ function updateCompleted(mode, obj){
     });
 }
 
+// all, active, completed 상태에 따라 필터처리
 function todoFilter(obj){
     switch(obj.text()){
         case 'All':
@@ -66,4 +67,30 @@ function todoFilter(obj){
         });
         break;
     }
+}
+
+// 전체 완료, 비 완료 토글 처리
+function toggle_all(mode){
+    $.ajax({
+        url: '/api/todos',
+        method: 'PUT',
+        dataType: 'json',
+        data: {
+            'mode': (mode === 'completedAll') ? 'setCompletedAll' : 'setUncompletedAll'
+        },
+        success: function(count){
+            if(mode === 'completedAll'){
+                $todoList.children('li:not(.completed)').addClass('completed');
+                $todoList.find('input[type="checkbox"].toggle').prop('checked', true);
+                $leftTodoCount.text(parseInt($leftTodoCount.text()) - count);
+            }else{
+                $todoList.children('li.completed').removeClass('completed');
+                $todoList.find('input[type="checkbox"].toggle').prop('checked', false);
+                $leftTodoCount.text(parseInt($leftTodoCount.text()) + count);
+            }
+            todoFilter($selectedFilter);
+        }
+    }).fail(function(){
+        alert('전체 ' + ((mode === 'completedAll') ? '' : '비') + '완료처리에 실패하였습니다. 잠시 후 다시 시도해 주세요.');
+    });
 }

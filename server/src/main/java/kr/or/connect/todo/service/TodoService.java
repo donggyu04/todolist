@@ -45,4 +45,12 @@ public class TodoService {
 	public int deleteCompletedAll(){
 		return dao.deleteCompletedAll();
 	}
+	
+	public int updateSetCompletedAll(){
+		return dao.updateSetCompletedAll();
+	}
+	
+	public int updateSetUncompletedAll(){
+		return dao.updateSetUncompletedAll();
+	}
 }
