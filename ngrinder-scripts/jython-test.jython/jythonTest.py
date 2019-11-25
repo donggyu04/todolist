@@ -11,6 +11,7 @@ from net.grinder.script import Test
 from net.grinder.plugin.http import HTTPRequest
 from net.grinder.plugin.http import HTTPPluginControl
 from java.util import Date
+from org.apache.commons.lang import StringUtils
 from HTTPClient import NVPair, Cookie, CookieModule
 
 control = HTTPPluginControl.getConnectionDefaults()
@@ -44,7 +45,9 @@ class TestRunner:
 	def __call__(self):
 		self.before()
 
-		result = request1.GET("http://10.105.175.139:9090", params)
+		result = request1.GET("http://10.105.175.139:9090", params);
+		grinder.logger.info(StringUtils.equals("test", "test"));
+
 
 		# You get the message body using the getText() method.
 		# if result.getText().find("HELLO WORLD") == -1 :
