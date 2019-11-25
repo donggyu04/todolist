@@ -21,6 +21,7 @@ control = HTTPPluginControl.getConnectionDefaults()
 control.timeout = 6000
 
 test1 = Test(1, "Test1")
+libResult = StringUtils.equals("test", "test")
 request1 = HTTPRequest()
 
 # Set header datas
@@ -46,7 +47,9 @@ class TestRunner:
 		self.before()
 
 		result = request1.GET("http://10.105.175.139:9090", params);
-		grinder.logger.info(StringUtils.equals("test", "test"));
+
+		if libResult :
+		    grinder.logger.info("lib in!!");
 
 
 		# You get the message body using the getText() method.
