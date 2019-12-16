@@ -64,7 +64,7 @@ class TestRunner {
 
     @Test
     public void test(){
-        HTTPResponse result = request.GET("http://10.105.175.139:9090", params)
+        HTTPResponse result = request.GET("http://10.105.175.139:9090", params);
 
         if (result.statusCode == 301 || result.statusCode == 302) {
             grinder.logger.warn("Warning. The response may not be correct. The response code was {}.", result.statusCode);
