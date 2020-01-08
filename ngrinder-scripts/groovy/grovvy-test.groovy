@@ -65,6 +65,6 @@ class TestRunner {
     @Test
     public void test(){
         // master
-        sleep(500);;
+        sleep(500)
     }
 }
